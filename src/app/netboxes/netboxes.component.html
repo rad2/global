@@ -1,0 +1,22 @@
+
+<app-nav></app-nav>
+<div class="row">
+  <div class="col-sm-4" *ngFor="let p of partitions">
+    <div class="profile-card">
+      <div class="panel panel-default">
+          <div class="panel-heading"> {{p.name}}-{{p.partition}}</div>
+          <div class="panel-body">
+            <span>{{p.activities}}</span>
+            <span>{{p.people}}</span>
+            <button>Launch</button><button>Activity log</button>
+            <hr>
+            <span>Controller:{{p.name}}</span>
+            <span>Location:{{p.location}}</span>
+            <span>Company:{{p.company}}</span>
+          </div>
+        
+</div>
+    </div>
+  </div>
+
+</div>

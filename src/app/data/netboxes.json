@@ -1,0 +1,6 @@
+[{"name":"Boston","partition":"Master","location":"Master Location","company":"S2","ip":"10.10.2.9","activities":120,"people":3000},
+{"name":"Berlin","partition":"Master","location":"Master Location","company":"S2","ip":"10.10.52.10","activities":140,"people":400},
+{"name":"Sydney","partition":"Master","location":"Master Location","company":"S2","ip":"10.10.20.5","activities":280,"people":500},
+{"name":"Dublin","partition":"Master","location":"Master Location","company":"S2","ip":"10.10.12.11","activities":910,"people":100}
+
+]

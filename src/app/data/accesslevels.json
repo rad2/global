@@ -1,0 +1,4 @@
+[{"partition":"Boston","name":"Bos_Master"},{"partition":"Boston","name":"Bos_IT room"},{"partition":"Boston","name":"Bos_Gym"},{"partition":"Boston","name":"Bos_Bathroom"},
+{"partition":"Berlin","name":"Ber_Master"},{"partition":"Berlin","name":"Ber_IT room"},{"partition":"Berlin","name":"Ber_Gym"},{"partition":"Berlin","name":"Ber_Bathroom"},
+{"partition":"Sydney","name":"Syd_Master"},{"partition":"Sydney","name":"Syd_IT room"},{"partition":"Sydney","name":"Syd_Gym"},{"partition":"Sydney","name":"Syd_Bathroom"},
+{"partition":"Dublin","name":"Dub_Master"},{"partition":"Dublin","name":"Dub_IT room"},{"partition":"Dublin","name":"Dub_Gym"},{"partition":"Dublin","name":"Dub_Bathroom"}]
