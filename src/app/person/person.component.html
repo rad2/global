@@ -52,10 +52,16 @@
                               
                         </div>
                        <div class="row">
-                            <div class="col-lg-8">
+                            <div class="col-lg-4">
                                     <div class="input-group">
                                         <span>Notes:</span>
-                                        <input type="text" class="form-control input-lg" name="Notes" [value]="activeperson.Notes" [(ngModel)]="activeperson.Notes">
+                                        <input type="textarea" class="form-control input-lg" name="Notes" [value]="activeperson.Notes" [(ngModel)]="activeperson.Notes">
+                                    </div>
+                            </div>
+                            <div class="col-lg-8">
+                                    <div class="input-group">
+                                        <span>ID#:</span>
+                                        <input type="text" class="form-control input-lg" name="id" [value]="activeperson.Udf1" [(ngModel)]="activeperson.Udf1">
                                     </div>
                             </div>
                                                           
@@ -152,7 +158,7 @@
                                                         <option value="4">Expired</option>
                                                     </select>
                                                 </td>
-                                                <td>{{ac.expirationdate}}</td>
+                                                <td><input type="date" value={{ac.ExpirationDate}}></td>
                                             </tr>
                                             <tr name="newrow" *ngIf="show">
                                                 <td><button type="button" class="btn btn-default btn-xs" (click)="show=false" >
@@ -162,7 +168,7 @@
                                                 <td><input type="text" name="encoded" [ngModel] = "credentials.encoded" ></td>
                                                 <td>
                                                     <select name="cf" [ngModel] = "credentials.cardformat">
-                                                    <option *ngFor ="let cf of card_format" [value]="cf.name"  selected >{{cf.name}}</option>
+                                                    <option *ngFor ="let cf of card_format" [value]="cf.Name" >{{cf.Name}}</option>
                                                     </select>
                                                 </td>
                                                 <td>
