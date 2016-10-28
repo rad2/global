@@ -25,25 +25,28 @@ export class LoginComponent implements OnInit {
   constructor(private _router: Router,private _personservice: PersonService) { }
   
  
-  //data:User={id:1,"username":'',"password":''};
+  data={id:1,"username":'global',"password":'global',"FirstName":"Rad","LastName":"Drissi"};
   loggedperson;
 
-  login(logininfo){
-    this._personservice.getPerson().subscribe(data =>{ 
+ login(logininfo):string{
+
+    //this._personservice.getPerson().subscribe(data =>{ 
       
-      this.users = data
-    for(let user of this.users){
-        if( user.username === logininfo.username && user.password === logininfo.password){
+      //this.users = data
+    //for(let user of this.users){
+        //if( user.User.Username === logininfo.username && user.User.Password === logininfo.password){
+         if( this.data.username === logininfo.username && this.data.password === logininfo.password){ 
           //this._router.navigate(['/person', this.fullname]);
           this._router.navigate(['/person']);
-          return this.fullname = user.fname +'_'+ user.lname;
+          return this.fullname = this.data.FirstName +'_'+ this.data.LastName;
         }else{
          this.msg = "Invalid Credentials";
-         return false;
+         return;
         }
      }
-    });
-  }
+    //});
+ // }
+  
   
   ngOnInit() {
   }

@@ -13,7 +13,7 @@ import {PersonService} from './person.service';
 export class PersonComponent implements OnInit {
   private people:Person[];
   
-  private card_format;
+  private card_format=[];
   private access_levels;
   private new_als={};
   private show;
@@ -22,12 +22,10 @@ export class PersonComponent implements OnInit {
   private item;
   private new_alvls=[];
   // accesslevel prop
-  private alvl={};
-  private al_name;
-  private al_activationdate; 
-  private al_expirationdate;
-  private autoremove;
-  private expired;
+  private activepersonaccesslevel=[];
+  private activepersonaccesscard=[];
+  private alvl=[];
+  
   // credentials prop
   private credentials={};
   private cardid;
@@ -51,8 +49,37 @@ export class PersonComponent implements OnInit {
   constructor(private personservice:PersonService) { }
   
   selectPerson(p){
-    console.log(p);
+    //assign the selected Person Object to activeperson
     this.activeperson = p;
+   //Clean the arrays after person selection
+     this.activepersonaccesslevel=[];
+     this.activepersonaccesscard=[]; 
+
+   // Create a new PersonAccessLevel object that has the Als names
+    this.activeperson.PersonAccessLevels.forEach(obj =>{
+      this.alvl.forEach(obj2 =>{
+        console.log("Obj: "+obj);
+        
+          if(obj2.AccessLevelId === obj.AccessLevelId){
+            console.log("Obj2: "+obj2.AccessLevelId);
+            console.log("Person2Al: "+obj.AccessLevelId);
+              console.log(obj2.Name);
+             //this.activepersonaccesslevel.push({"Name":obj2.Name,"ActivationDate":obj.ActivationDate,"ExpirationDate":obj.ExpirationDate,"AutoRemove":obj.AutoRemove,"Expired":obj.Expired});
+             obj.Name = obj2.Name;
+            }
+      });
+      });
+    //Create a new personAccesscard that has CardFromat names
+     this.activeperson.PersonAccessCards.forEach(obj =>{
+       this.card_format.forEach(obj2 => {
+         if(obj2.CardFormatId === obj.CardFormatId){
+            //this.activepersonaccesscard.push({"CardFormatName":obj2.Name,"HotStamp":})
+            obj.CardFormatName = obj2.Name;
+         }
+       });
+ 
+     });  
+   
   }
   selectCard(card){
     this.activecard = card;
@@ -74,12 +101,16 @@ export class PersonComponent implements OnInit {
  getAccessLevels(){
       this.personservice.getAccesslevels().subscribe(data =>{
       this.access_levels =data;
+      this.alvl=this.getActivePersonAccesslevel(data);
       });
   }
-
+ getActivePersonAccesslevel(obj){
+    return obj;
+ }
   //add selected als to an array
- add_als(item){
+ add_als(id,item){
     this.new_als={
+      al_accesslevelid: id,
       al_name: item
     }  
     this.new_alvls.push(this.new_als);
@@ -89,7 +120,7 @@ export class PersonComponent implements OnInit {
     let self= this;
    // console.log(this.new_alvls);
     this.new_alvls.forEach(function(als) {
-       self.activeperson.accesslevel.push(als);
+       self.activeperson.PersonAccessLevels.push(als);
     });
    this.new_alvls=[];
   }
@@ -108,16 +139,16 @@ export class PersonComponent implements OnInit {
       expirationdate: this.c_expirationdate
      }
      if(newcard.length > 0){
-       this.activeperson.card.push(this.personservice.addCredential(newcard));
+       this.activeperson.PersonAccessCards.push(this.personservice.addCredential(newcard));
         this.show=false;
      } 
   }
   updatePerson(person){
-    this.activeperson.fname = person.fname;
-    this.activeperson.lname = person.lname;
-    this.activeperson.notes = person.notes;
-    this.activeperson.p_activationdate = person.p_activationdate;
-    this.activeperson.p_expirationdate = person.p_expirationdate;
+    this.activeperson.FirstName = person.fname;
+    this.activeperson.LastName= person.lname;
+    this.activeperson.Notes = person.notes;
+    this.activeperson.ActivationDate= person.p_activationdate;
+    this.activeperson.ExpirationDate = person.p_expirationdate;
     
   }
   // Save person data

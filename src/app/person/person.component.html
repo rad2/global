@@ -6,33 +6,33 @@
             <div *ngIf="people">
                 <ul class="list-group">
                     <li class="list-group-item" *ngFor="let p of people" (click)="selectPerson(p)" [class.active]="p===activeperson">
-                        <h5>{{p.fname}} {{p.lname}}</h5>
+                        <h5>{{p.FirstName}} {{p.LastName}}</h5>
 
                     </li>
                 </ul>
             </div>
 
         </div>
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="jumbotron" *ngIf="activeperson">
                  <form class="form-horizontal" >
                         <div class="row">
                                 <div class="col-md-4">
                                     <div class="input-group">
                                         <span>First Name:</span>
-                                        <input type="text" class="form-control input-md" name="fname" [value]="activeperson.fname" [(ngModel)]="activeperson.fname">{{activeperson.fname}}
+                                        <input type="text" class="form-control input-md" name="FirstName" [value]="activeperson.FirstName" [(ngModel)]="activeperson.FirstName">
                                     </div>
                                 </div>
                                 <div class="col-md-1">
                                     <div class="input-group">
-                                        <span >MI:</span>
-                                        <input type="text" class="form-control input-md" name="mi" maxlength=2 [value]="activeperson.mi" [(ngModel)]="activeperson.mi">{{activeperson.mi}}   
+                                        <span >MiddleName:</span>
+                                        <input type="text" class="form-control input-md" name="MiddleName" maxlength=2 [value]="activeperson.MiddleName" [(ngModel)]="activeperson.MiddleName">  
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="input-group">
                                         <span >Last Name:</span>
-                                        <input type="text" class="form-control input-md" name="lname" [value]= "activeperson.lname" [(ngModel)]="activeperson.lname">{{activeperson.lname}}   
+                                        <input type="text" class="form-control input-md" name="LastName" [value]= "activeperson.LastName" [(ngModel)]="activeperson.LastName">   
                                     </div>
                                 </div>
                         </div>
@@ -40,13 +40,13 @@
                             <div class="col-md-4">
                                     <div class="input-group">
                                         <span>Activation Date:</span>
-                                        <input type="datetime" class="form-control input-md" name="p_activationdate" [value]="activeperson.p_activationdate" [(ngModel)]="activeperson.p_activationdate">{{activeperson.p_activationdate}}
+                                        <input type="datetime" class="form-control input-md" name="p_activationdate" [value]="activeperson.ActivationDate" [(ngModel)]="activeperson.ActivationDate">
                                     </div>
                             </div>
                              <div class="col-md-4">
                                     <div class="input-group">
                                         <span>Expiration Date:</span>
-                                        <input type="datetime" class="form-control input-md" name="p_expirationdate" [value]="activeperson.p_expirationdate" [(ngModel)]="activeperson.p_expirationdate">{{activeperson.p_expirationdate}}
+                                        <input type="datetime" class="form-control input-md" name="p_expirationdate" [value]="activeperson.ExpirationDate" [(ngModel)]="activeperson.ExpirationDate">
                                     </div>
                                 </div>
                               
@@ -55,23 +55,23 @@
                             <div class="col-lg-8">
                                     <div class="input-group">
                                         <span>Notes:</span>
-                                        <input type="text" class="form-control input-lg" name="notes" [value]="activeperson.notes" [(ngModel)]="activeperson.notes">{{activeperson.notes}}
+                                        <input type="text" class="form-control input-lg" name="Notes" [value]="activeperson.Notes" [(ngModel)]="activeperson.Notes">
                                     </div>
                             </div>
                                                           
                        </div><br>
                        <div class="row">
-                         <div class="col-lg-2">  
-                             <span>Access Levels</span>
-                             <div class="panel panel-default">
-                              <div class="panel-body">
-                               <select multiple name="alvl" #alvl_list size=15 (click)="add_als(alvl_list.value)">
-                                    <option  *ngFor="let al of access_levels" [value]="" >
-                                    {{al.partition}}-{{al.name}}
-                                    </option>
-                               </select>
-                              </div>
-                              </div>
+                         <div class="col-md-3">  
+                             <span>Access Levels:<b>{{access_levels.length}}</b></span>
+                             <!--<div class="panel panel-default">
+                              <div class="panel-body">-->
+                                <select multiple name="alvl" #alvl_list size=15 (click)="add_als(alvl_list.value,alvl_id.value)">
+                                        <option  *ngFor="let al of access_levels" #alvl_id value="al.AccessLevelId" >
+                                        {{al.Name}}
+                                        </option>
+                                </select>
+                             <!-- </div>
+                              </div>-->
                          </div> 
                          <div class="col-xs-2">
                              <span>&nbsp;</span>
@@ -88,7 +88,7 @@
                                    </tr>
                                </table>
                            </div>
-                        <div class="col-lg-8">
+                        <div class="col-lg-7">
                             <span></span>
                                 <table class="table table-bordered table-hover">
                                             <thead>
@@ -101,18 +101,18 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                             <tr *ngFor="let al of activeperson.accesslevel">
-                                                 <td>{{al.al_name}}</td>
-                                                 <td><input type="datetime-local"  name="al_activationdate" [ngModel]="alvl.al_activationdate" [value]="al.al_activationdate">{{al.al_activationdate}}</td>
-                                                 <td><input type="datetime-local"  name="al_expirationdate" [ngModel]="alvl.al_expirationdate" [value]="al.al_experitiondate">{{al.al_experitiondate}}</td>
-                                                 <td><select  name="autoremove" [ngModel]="alvl.autoremove" >
-                                                     <option [value]="" selected>Yes</option>
-                                                     <option>No</option>
+                                             <tr *ngFor="let al of activeperson.PersonAccessLevels">
+                                                 <td>{{al.Name}}</td>
+                                                 <td><input type="datetime-local"  name="al_activationdate" [ngModel]="alvl.ActivationDate" [value]="al.ActivationDate"></td>
+                                                 <td><input type="datetime-local"  name="al_expirationdate" [ngModel]="alvl.ExpirationDate" [value]="al.ExpirationDate"></td>
+                                                 <td><select  name="autoremove" [ngModel]="al.AutoRemove" [class.selected]="al.AutoRemove">
+                                                     <option value="true">Yes</option>
+                                                     <option value="false">No</option>
                                                      </select>
                                                  </td>
-                                                 <td><select  name="expired" [ngModel]="alvl.expired" >
-                                                     <option [value]="" selected>Yes</option>
-                                                     <option>No</option>
+                                                 <td><select  name="expired" [ngModel]="al.Expired" [class.selected]="al.Expired">
+                                                     <option value="true">Yes</option>
+                                                     <option value="false">No</option>
                                                      </select>
                                                      </td>
                                              </tr>
@@ -120,7 +120,7 @@
                                 </table> 
                         </div>    
                          
-                       </div>
+                       </div><hr>
                        <div class="row">
                          <div class="col-lg-8">
                              <span>Credentials</span>
@@ -138,25 +138,25 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr *ngFor="let ac of activeperson.card" (click)="selectCard(ac)" [class.active]="ac===activecard">
+                                            <tr *ngFor="let ac of activeperson.PersonAccessCards" (click)="selectCard(ac)" [class.active]="ac===activecard">
                                                 <td><button type="button" class="btn btn-default btn-xs" (click)="revokeCard(ac.cardid)">
-                                                    <span class="glyphicon glyphicon-minus"></span>
+                                                    <span class="glyphicon glyphicon-minus-sign"></span>
                                                 </button></td>
-                                                <td>{{ac.hotstamp}}</td>
-                                                <td>{{ac.encoded}}</td>
-                                                <td>{{ac.cardformat}}</td>
-                                                <td><select name="status" [ngModel] = "credentials.status">
-                                                        <option value="Active">Active</option>
-                                                        <option value="Lost">Lost</option>
-                                                        <option value="Damaged">Damaged</option>
-                                                        <option value="Expired">Expired</option>
+                                                <td>{{ac.HotStamp}}</td>
+                                                <td>{{ac.EncodedNumber}}</td>
+                                                <td>{{ac.CardFormatName}}</td>
+                                                <td><select name="status" [ngModel] = "ac.CardStatusId" [class.selected]="ac.CardStatusId">
+                                                        <option value="1">Active</option>
+                                                        <option value="2">Lost</option>
+                                                        <option value="3">Damaged</option>
+                                                        <option value="4">Expired</option>
                                                     </select>
                                                 </td>
                                                 <td>{{ac.expirationdate}}</td>
                                             </tr>
                                             <tr name="newrow" *ngIf="show">
                                                 <td><button type="button" class="btn btn-default btn-xs" (click)="show=false" >
-                                                    <span class="glyphicon glyphicon-minus"></span>
+                                                    <span class="glyphicon glyphicon-minus-sign"></span>
                                                 </button></td>
                                                 <td><input type="text" name="hotstamp" [ngModel] = "credentials.hotstamp"></td>
                                                 <td><input type="text" name="encoded" [ngModel] = "credentials.encoded" ></td>
@@ -167,10 +167,10 @@
                                                 </td>
                                                 <td>
                                                     <select name="status" [ngModel] = "credentials.status">
-                                                        <option value="Active">Active</option>
-                                                        <option value="Lost">Lost</option>
-                                                        <option value="Damaged">Damaged</option>
-                                                        <option value="Expired">Expired</option>
+                                                        <option value="1">Active</option>
+                                                        <option value="2">Lost</option>
+                                                        <option value="3">Damaged</option>
+                                                        <option value="4">Expired</option>
                                                     </select>
                                                    
                                                 </td>

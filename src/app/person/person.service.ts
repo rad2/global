@@ -14,8 +14,8 @@ import { Person } from './IPerson';
 export class PersonService {
 
 private people:Person[];
-private person_url ='app/data/person.json';
-private cf_url = 'app/data/cardformat.json';
+private person_url ='app/data/people.json';
+private cf_url = 'app/data/cardformats.json';
 private al_url = 'app/data/accesslevels.json';
 
   constructor(private http: Http) { }
