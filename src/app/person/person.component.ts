@@ -58,14 +58,8 @@ export class PersonComponent implements OnInit {
    // Create a new PersonAccessLevel object that has the Als names
     this.activeperson.PersonAccessLevels.forEach(obj =>{
       this.alvl.forEach(obj2 =>{
-        console.log("Obj: "+obj);
-        
-          if(obj2.AccessLevelId === obj.AccessLevelId){
-            console.log("Obj2: "+obj2.AccessLevelId);
-            console.log("Person2Al: "+obj.AccessLevelId);
-              console.log(obj2.Name);
-             //this.activepersonaccesslevel.push({"Name":obj2.Name,"ActivationDate":obj.ActivationDate,"ExpirationDate":obj.ExpirationDate,"AutoRemove":obj.AutoRemove,"Expired":obj.Expired});
-             obj.Name = obj2.Name;
+           if(obj2.AccessLevelId === obj.AccessLevelId){
+               obj.Name = obj2.Name;
             }
       });
       });
