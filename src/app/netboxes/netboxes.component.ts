@@ -20,7 +20,9 @@ export class NetboxesComponent implements OnInit {
       this.partitions = data;
     });
   }
-
+  notImplemented(){
+    alert("Not Implemented Yet");
+  }
   ngOnInit() {
 
     this.getPartitions();

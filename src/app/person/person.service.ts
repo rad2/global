@@ -23,15 +23,17 @@ private al_url = 'app/data/accesslevels.json';
   getPerson(): Observable<Person[]>{
     //return PEOPLE;
     return this.http.get(this.person_url)
-                     .map(this.extractData);
+                     .map(this.extractData)
                      //.catch(this.handleError);
+                  
   }
-
-  getCardFormat(): Observable<Person[]>{
+  
+  
+  getCardFormat(): Observable<any[]>{
     return this.http.get(this.cf_url)
                      .map(this.extractData);
   }
- getAccesslevels(): Observable<Person[]>{
+ getAccesslevels(): Observable<any[]>{
     return this.http.get(this.al_url)
                      .map(this.extractData);
   }

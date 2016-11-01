@@ -6,6 +6,7 @@ export interface Person{
   ActivationDate: string;
   ExpirationDate: string;
   Notes: string;
+  Disabled:boolean;
   PersonAccessLevels?: any[];
   PersonAccessCards?: any[];
 }
